@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>furniture web</title>
+  <meta charset="UTF-8" />
+  <title>Furniture Store</title>
+  <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
-    Hi! This is the home page of my furniture web!
+  <header>
+    <h1>Furniture Store</h1>
+    <nav>
+      <a href="product-list.html?category=Sofas">Sofas</a>
+        <a href="product-list.html?category=Beds&Mattresses">Beds&Mattresses</a>
+      <a href="product-list.html?category=Tables&Chairs">Tables&Chairs</a>
+      <a href="product-list.html?category=Baby&Kids">Baby&Kids</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="featured">
+      <h2>Featured Products</h2>
+      <div id="featured-products"></div>
+    </section>
+  </main>
+
+  <script type="module" src="./js/main.js"></script>
 </body>
 </html>

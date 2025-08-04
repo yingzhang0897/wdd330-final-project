@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Checkout</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Checkout</h1>
+    <a href="cart.html">← Back to Cart</a>
+  </header>
+
+  <main>
+    <form id="checkout-form">
+      <h2>Shipping Information</h2>
+      <label>
+        Full Name:
+        <input type="text" name="name" required />
+      </label>
+      <label>
+        Address Line:
+        <input type="text" name="address" required />
+      </label>
+      <label>
+        ZIP Code:
+        <input type="text" name="zip" required />
+      </label>
+
+      <button type="submit">Get Shipping Rate</button>
+    </form>
+
+    <section id="order-summary">
+      <!-- Summary and shipping rate will appear here -->
+    </section>
+  </main>
+
+  <script type="module" src="./js/checkoutPage.mjs"></script>
+</body>
+</html>
