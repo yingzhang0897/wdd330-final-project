@@ -3,26 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <title>Furniture Store</title>
+  <link color="#26E07F" rel="mask-icon" href=".../icons8-furniture-arcade-64.svg">
   <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
-  <header>
-    <h1>Furniture Store</h1>
-    <nav>
-      <a href="product-list.html?category=Sofas">Sofas</a>
-        <a href="product-list.html?category=Beds&Mattresses">Beds&Mattresses</a>
-      <a href="product-list.html?category=Tables&Chairs">Tables&Chairs</a>
-      <a href="product-list.html?category=Baby&Kids">Baby&Kids</a>
-    </nav>
-  </header>
-
+  <header></header>
   <main>
+    <section class="banner">
+      <img src="/public/images/furniture-store.avif" alt="Modern furniture banner" />
+    </section>
+
+    <section class="mission">
+      <h2>Our Mission</h2>
+      <p>At Jianjun Furniture Store, we believe that great design should be accessible to everyone. We aim to bring comfort, beauty, and functionality into every home with stylish and affordable furniture.</p>
+    </section>
+
     <section id="featured">
       <h2>Featured Products</h2>
       <div id="featured-products"></div>
     </section>
-  </main>
 
+    <section class="categories">
+    <h2>Shop by Category</h2>
+    <div class="category-grid">
+      <a href="/product-listing/product-listing.html?category=sofas" class="category-card">
+        <img src="/public/images/sofa.svg" alt="Sofas" />
+        <p>Sofas</p>
+      </a>
+      <a href="/product-listing/product-listing.html?category=beds" class="category-card">
+        <img src="/public/images/bed.svg" alt="Beds" />
+        <p>Beds</p>
+      </a>
+      <a href="/product-listing/product-listing.html?category=tables" class="category-card">
+        <img src="/public/images/table.svg" alt="Tables" />
+        <p>Tables</p>
+      </a>
+      <a href="/product-listing/product-listing.html?category=kids" class="category-card">
+        <img src="/public/images/kid.svg" alt="Kids" />
+        <p>Kids</p>
+      </a>
+    </div>
+  </section>
+
+  </main>
+  <footer></footer>
   <script type="module" src="./js/main.js"></script>
 </body>
 </html>

@@ -1,4 +1,7 @@
 import ExternalServices from "./ExternalServices.mjs";
+import { loadHeaderFooter } from "/js/utils.mjs";
+
+loadHeaderFooter();
 
 document.addEventListener("DOMContentLoaded", async () => {
   const container = document.querySelector("#featured-products");
@@ -18,3 +21,4 @@ document.addEventListener("DOMContentLoaded", async () => {
     container.appendChild(card);
   });
 });
+
