@@ -12,7 +12,10 @@ export default defineConfig({
         cart: resolve(__dirname, "src/cart/cart.html"),
         checkout: resolve(__dirname, "src/checkout/checkout.html"),
         product: resolve(__dirname, "src/product-pages/product-detail.html"),
-        product_listing: resolve(__dirname, "src/product-listing/product-listing.html"),
+        product_listing: resolve(
+          __dirname,
+          "src/product-listing/product-listing.html",
+        ),
         wishlist: resolve(__dirname, "src/wishlist/wishlist.html"),
       },
     },

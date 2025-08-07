@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const service = new ExternalServices("/api/products");
   const data = await service.getData();
 
-  data.slice(0, 4).forEach(product => {
+  data.slice(0, 4).forEach((product) => {
     const card = document.createElement("div");
     card.classList.add("product-card");
     card.innerHTML = `
@@ -21,4 +21,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     container.appendChild(card);
   });
 });
-
