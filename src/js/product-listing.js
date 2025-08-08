@@ -1,49 +1,48 @@
 import { loadHeaderFooter,getParam } from "./utils.mjs";
 
-const apiBase =
-  "https://wdd330-furniturestoreapi.onrender.com/api/products/category/";
+loadHeaderFooter();
+document.addEventListener("DOMContentLoaded", () => {
+  const productListContainer = document.getElementById("product-list");
 
-// Function to create product HTML
-function renderProducts(products) {
-  const container = document.querySelector("#product-list");
-  if (!container) return;
-
-  if (products.length === 0) {
-    container.innerHTML = "<p>No products found in this category.</p>";
-    return;
-  }
-
-  container.innerHTML = products
-    .map(
-      (product) => `
-    <div class="product-card">
-      <img src="${product.imageUrl}" alt="${product.name}" />
-      <h3>${product.Brand}</h3>
-      <p>${product.name || ""}</p>
-      <p class="price">$${product.ListPrice}</p>
-      <p class="price">$${product.FinalPrice}</p>
-    </div>
-  `,
-    )
-    .join("");
-}
-
-// Load and display products
-async function loadProducts() {
+  // 1. Get category from URL
   const category = getParam("category");
 
   if (!category) {
-    alert("No category specified.");
+    productListContainer.innerHTML = "<p>No category selected.</p>";
     return;
   }
 
-  try {
-    const response = await fetch(`${apiBase}${category}`);
-    const products = await response.json();
-    renderProducts(products);
-  } catch (error) {
-    console.error("Failed to fetch products:", error);
-  }
-}
-document.addEventListener("DOMContentLoaded", loadHeaderFooter);
-document.addEventListener("DOMContentLoaded", loadProducts);
+  // 2. Fetch products from API
+  const apiUrl = `https://wdd330-furniturestoreapi.onrender.com/api/products/category/${category}`;
+
+  fetch(apiUrl)
+    .then((response) => {
+      if (!response.ok) throw new Error("Failed to fetch products");
+      return response.json();
+    })
+    .then((products) => {
+      // 3. Display products
+      if (products.length === 0) {
+        productListContainer.innerHTML = "<p>No products found in this category.</p>";
+        return;
+      }
+
+      productListContainer.innerHTML = products
+        .map(
+          (product) => `
+          <div class="product-card">
+            <img src="${product.imageUrl}" alt="${product.name}" />
+            <h3>${product.Brand}</h3>
+            <p>${product.name}</p>
+            <p>$${product.ListPrice}</p>
+            <p>$${product.FinalPrice}</p>
+          </div>
+        `
+        )
+        .join("");
+    })
+    .catch((error) => {
+      console.error("Error loading products:", error);
+      productListContainer.innerHTML = "<p>Error loading products.</p>";
+    });
+});
