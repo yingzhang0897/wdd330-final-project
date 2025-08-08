@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const encodedCategory = encodeURIComponent(category);
 
           return `
-            <a href="../product-pages/product-detail.html?category=${encodedCategory}&name=${encodedName}" class="product-link">
+            <a href="/product-pages/product-detail.html?category=${encodedCategory}&name=${encodedName}" class="product-link">
               <div class="product-card">
                 <img src="${product.imageUrl}" alt="${product.name}" />
                 <h3>${product.Brand}</h3>
