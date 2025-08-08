@@ -1,18 +1,18 @@
-import { loadHeaderFooter,getParam } from "./utils.mjs";
+import { loadHeaderFooter, getParam } from "./utils.mjs";
 
 loadHeaderFooter();
+
 document.addEventListener("DOMContentLoaded", () => {
   const productListContainer = document.getElementById("product-list");
 
-  // 1. Get category from URL
   const category = getParam("category");
+
 
   if (!category) {
     productListContainer.innerHTML = "<p>No category selected.</p>";
     return;
   }
 
-  // 2. Fetch products from API
   const apiUrl = `https://wdd330-furniturestoreapi.onrender.com/api/products/category/${category}`;
 
   fetch(apiUrl)
@@ -21,24 +21,28 @@ document.addEventListener("DOMContentLoaded", () => {
       return response.json();
     })
     .then((products) => {
-      // 3. Display products
       if (products.length === 0) {
         productListContainer.innerHTML = "<p>No products found in this category.</p>";
         return;
       }
 
       productListContainer.innerHTML = products
-        .map(
-          (product) => `
-          <div class="product-card">
-            <img src="${product.imageUrl}" alt="${product.name}" />
-            <h3>${product.Brand}</h3>
-            <p>${product.name}</p>
-            <p>$${product.ListPrice}</p>
-            <p>$${product.FinalPrice}</p>
-          </div>
-        `
-        )
+        .map((product) => {
+          const encodedName = encodeURIComponent(product.name);
+          const encodedCategory = encodeURIComponent(category);
+
+          return `
+            <a href="../product-pages/product-detail.html?category=${encodedCategory}&name=${encodedName}" class="product-link">
+              <div class="product-card">
+                <img src="${product.imageUrl}" alt="${product.name}" />
+                <h3>${product.Brand}</h3>
+                <p>${product.name}</p>
+                <p>$${product.ListPrice}</p>
+                <p>$${product.FinalPrice}</p>
+              </div>
+            </a>
+          `;
+        })
         .join("");
     })
     .catch((error) => {
