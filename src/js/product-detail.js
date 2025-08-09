@@ -1,6 +1,6 @@
 console.log("product-details.js loaded");//debug
 
-import { getParam, loadHeaderFooter } from "./utils.mjs";
+import { getParam, loadHeaderFooter } from "/js//utils.mjs";
 
 loadHeaderFooter().catch(err => console.error("Header/Footer load failed", err));
 
