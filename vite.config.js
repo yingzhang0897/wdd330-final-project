@@ -4,6 +4,15 @@ import { defineConfig } from "vite";
 export default defineConfig({
   root: "src/",
   appType: "mpa", // <-- critical: disable SPA fallback in dev
+  server: {
+    proxy: {
+      "/api": {
+        target: "https://wdd330-furniturestoreapi.onrender.com",
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
   build: {
     outDir: "../dist",
     rollupOptions: {
