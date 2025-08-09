@@ -6,17 +6,21 @@ export const fmtMoney = (n) =>
     currency: "USD",
   });
 
-export function buildOrder(form) {
+export function buildOrder(form, chosenRate = null) {
   const items = readCart();
   if (!items.length) throw new Error("Your cart is empty.");
 
-  // Basic “validation” – return a list of messages (empty if OK)
   const errors = validateForm(form);
   if (errors.length) {
     const err = new Error("Invalid form");
     err.messages = errors;
     throw err;
   }
+
+  const shipAmount = chosenRate ? Number(chosenRate.amount || 0) : 0;
+  const sub = subtotal(items);
+  const tax = 0; // keep as-is for now
+  const grand = Number(sub) + shipAmount + tax;
 
   const order = {
     id: `ord_${Date.now()}`,
@@ -32,19 +36,29 @@ export function buildOrder(form) {
       city: form.city.value.trim(),
       state: form.state.value.trim(),
       zip: form.zip.value.trim(),
+      // include the selected shipping rate for records
+      rate: chosenRate
+        ? {
+            id: chosenRate.object_id,
+            provider: chosenRate.provider,
+            service: chosenRate.servicelevel_name || "Service",
+            amount: Number(chosenRate.amount || 0),
+            currency: chosenRate.currency || "USD",
+          }
+        : null,
     },
     items: items.map((i) => ({
       name: i.name,
       brand: i.Brand ?? null,
-      price: Number(i.price || 0),
+      price: Number(i.price || i.FinalPrice || 0),
       quantity: Number(i.quantity || 1),
       imageUrl: i.imageUrl,
     })),
     totals: {
-      subtotal: subtotal(items),
-      shipping: 0, // you can compute later
-      tax: 0,
-      grandTotal: subtotal(items), // + shipping + tax
+      subtotal: sub,
+      shipping: shipAmount,
+      tax,
+      grandTotal: grand,
     },
     payment: {
       brand: "demo",
@@ -68,7 +82,7 @@ export function validateForm(form) {
     messages.push("Email is invalid");
 
   if (form.state.value && !/^[A-Za-z]{2}$/.test(form.state.value))
-    messages.push("State must be 2 letters (e.g., AZ)");
+    messages.push("state must be 2 letters (e.g., AZ)");
 
   if (form.zip.value && !/^\d{5}(-\d{4})?$/.test(form.zip.value))
     messages.push("ZIP must be 5 digits (or 5-4)");

@@ -45,13 +45,22 @@
                 <input id="city" name="city" required />
               </label>
               <label>
-                State
+                state
                 <input id="state" name="state" maxlength="2" required />
               </label>
               <label>
                 ZIP
                 <input id="zip" name="zip" inputmode="numeric" maxlength="10" required />
               </label>
+            </div>
+          </fieldset>
+
+          <!-- NEW: Shipping Options (fetched from /api/shipping/rates) -->
+          <fieldset>
+            <legend>Shipping Options</legend>
+            <button id="get-rates" type="button">Get Shipping Rates</button>
+            <div id="shipping-options" class="shipping-options" style="margin-top:.75rem;">
+              Enter address and click “Get Shipping Rates”.
             </div>
           </fieldset>
 
@@ -85,7 +94,13 @@
           <div class="summary-row">
             <span>Subtotal</span><strong id="summary-subtotal">$0.00</strong>
           </div>
-          <!-- Hook for shipping/tax later -->
+          <!-- NEW: summary rows -->
+          <div class="summary-row">
+            <span>Shipping</span><strong id="summary-shipping">$0.00</strong>
+          </div>
+          <div class="summary-row total">
+            <span>Total</span><strong id="summary-total">$0.00</strong>
+          </div>
         </aside>
       </section>
     </main>
