@@ -12,4 +12,12 @@ export async function loadHeaderFooter() {
   document.querySelector("header").innerHTML = header;
   document.querySelector("footer").innerHTML = footer;
   setupNewsletterForm();
+  // Show cart count on page load
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const badge = document.querySelector(".cart-count");
+  if (badge) {
+    const count = cart.reduce((sum, i) => sum + (i.quantity || 0), 0);
+    badge.textContent = String(count);
+    badge.style.display = count ? "inline-block" : "none";
+  }
 }

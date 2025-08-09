@@ -3,38 +3,94 @@
   <head>
     <meta charset="UTF-8" />
     <title>Checkout</title>
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <header>
+    <header></header>
+
+    <main class="checkout-page">
       <h1>Checkout</h1>
-      <a href="cart.html">← Back to Cart</a>
-    </header>
 
-    <main>
-      <form id="checkout-form">
-        <h2>Shipping Information</h2>
-        <label>
-          Full Name:
-          <input type="text" name="name" required />
-        </label>
-        <label>
-          Address Line:
-          <input type="text" name="address" required />
-        </label>
-        <label>
-          ZIP Code:
-          <input type="text" name="zip" required />
-        </label>
+      <section class="checkout-grid">
+        <form id="checkout-form" novalidate>
+          <fieldset>
+            <legend>Contact</legend>
+            <label>
+              Full Name
+              <input id="fullName" name="fullName" required />
+            </label>
+            <label>
+              Email
+              <input id="email" name="email" type="email" required />
+            </label>
+            <label>
+              Phone
+              <input id="phone" name="phone" inputmode="tel" />
+            </label>
+          </fieldset>
 
-        <button type="submit">Get Shipping Rate</button>
-      </form>
+          <fieldset>
+            <legend>Shipping Address</legend>
+            <label>
+              Address Line 1
+              <input id="address1" name="address1" required />
+            </label>
+            <label>
+              Address Line 2
+              <input id="address2" name="address2" />
+            </label>
+            <div class="row">
+              <label>
+                City
+                <input id="city" name="city" required />
+              </label>
+              <label>
+                State
+                <input id="state" name="state" maxlength="2" required />
+              </label>
+              <label>
+                ZIP
+                <input id="zip" name="zip" inputmode="numeric" maxlength="10" required />
+              </label>
+            </div>
+          </fieldset>
 
-      <section id="order-summary">
-        <!-- Summary and shipping rate will appear here -->
+          <fieldset>
+            <legend>Payment</legend>
+            <label>
+              Card Number
+              <input id="cardNumber" name="cardNumber" inputmode="numeric" maxlength="19" required />
+            </label>
+            <div class="row">
+              <label>
+                Exp (MM/YY)
+                <input id="exp" name="exp" placeholder="MM/YY" maxlength="5" required />
+              </label>
+              <label>
+                CVV
+                <input id="cvv" name="cvv" inputmode="numeric" maxlength="4" required />
+              </label>
+            </div>
+            <small class="muted">Demo only. No real charges.</small>
+          </fieldset>
+
+          <button id="place-order" type="submit">Place Order</button>
+          <p id="checkout-error" class="error" style="display:none;"></p>
+          <p id="checkout-success" class="success" style="display:none;"></p>
+        </form>
+
+        <aside class="order-summary">
+          <h2>Order Summary</h2>
+          <div id="summary-items"></div>
+          <div class="summary-row">
+            <span>Subtotal</span><strong id="summary-subtotal">$0.00</strong>
+          </div>
+          <!-- Hook for shipping/tax later -->
+        </aside>
       </section>
     </main>
 
-    <script type="module" src="./js/checkoutPage.mjs"></script>
+    <footer></footer>
+    <script type="module" src="/js/checkout.js"></script>
   </body>
 </html>

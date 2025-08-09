@@ -2,28 +2,28 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Shopping Cart</title>
-    <link
-      color="#26E07F"
-      rel="mask-icon"
-      href=".../icons8-furniture-arcade-64.svg"
-    />
-    <link rel="stylesheet" href="./css/style.css" />
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <header>
-      <h1>Your Cart</h1>
-      <a href="index.html">← Continue Shopping</a>
-    </header>
+    <header></header>
 
-    <main id="cart-container">
-      <!-- Cart items will go here -->
+    <main class="cart-page">
+      <h1>Shopping Cart</h1>
+
+      <section id="cart-container"></section>
+
+      <aside id="cart-summary" class="cart-summary">
+        <div class="row">
+          <span>Subtotal</span>
+          <strong id="cart-subtotal">$0.00</strong>
+        </div>
+        <button id="checkout-btn">Proceed to Checkout</button>
+        <button id="clear-cart" class="linklike">Clear Cart</button>
+      </aside>
     </main>
 
-    <footer>
-      <button id="checkoutBtn">Proceed to Checkout</button>
-    </footer>
-
-    <script type="module" src="./js/cartPage.mjs"></script>
+    <footer></footer>
+    <script type="module" src="/js/cart.js"></script>
   </body>
 </html>

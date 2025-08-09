@@ -11,6 +11,7 @@ export default defineConfig({
         "index.html": resolve(__dirname, "src/index.html"),
         "cart/cart.html": resolve(__dirname, "src/cart/cart.html"),
         "checkout/checkout.html": resolve(__dirname, "src/checkout/checkout.html"),
+        "checkout/confirmation.html": resolve(__dirname, "src/checkout/confirmation.html"),
         "product-pages/product-detail.html": resolve(
           __dirname,
           "src/product-pages/product-detail.html"
@@ -18,9 +19,8 @@ export default defineConfig({
         "product-listing/product-listing.html": resolve(
           __dirname,
           "src/product-listing/product-listing.html"
-        ),
-        "wishlist/wishlist.html": resolve(__dirname, "src/wishlist/wishlist.html"),
-      },
-    },
-  },
+        )
+      }
+    }
+  }
 });

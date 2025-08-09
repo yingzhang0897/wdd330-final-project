@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <header></header>
+
+    <main class="checkout-page">
+      <h1>Thank you!</h1>
+      <p>Your order has been placed.</p>
+      <p>Order ID: <strong id="order-id">—</strong></p>
+
+      <section class="order-summary">
+        <h2>Order Summary</h2>
+        <div id="order-items"></div>
+        <div class="summary-row">
+          <span>Total</span><strong id="order-total">$0.00</strong>
+        </div>
+      </section>
+
+      <p><a class="btn" href="/index.html">Back to Home</a></p>
+    </main>
+
+    <footer></footer>
+    <script type="module" src="/js/confirmation.js"></script>
+  </body>
+</html>
