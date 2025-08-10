@@ -83,7 +83,10 @@ async function handleGetRates() {
       throw new Error("Please complete the Shipping Address first.");
     }
 
-    const resp = await fetch("/api/shipping/rates", {
+    const API_BASE = import.meta.env.VITE_SERVER_URL; // a variable in Netlify
+
+
+    const resp = await fetch(`${API_BASE}/api/shipping/rates`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ to }),
